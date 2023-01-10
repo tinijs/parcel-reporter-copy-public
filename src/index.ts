@@ -1,23 +1,28 @@
 import {Reporter} from '@parcel/plugin';
-import {resolve, join, basename, relative} from 'path';
+import {resolve, join, relative} from 'path';
 import {statSync, existsSync, mkdirSync, copyFileSync, readdirSync} from 'fs';
 
 export default new Reporter({
   async report({event}) {
     if (event.type === 'buildSuccess') {
-      const sourceDir = resolve('public');
-      const outDir = resolve('www'); // TODO: use the configs
-      (statSync(sourceDir).isDirectory() ? copyDir : copyFile)(
-        sourceDir,
-        outDir
-      );
+      const bundles = event.bundleGraph.getBundles();
+      // extract out dir
+      let outDir;
+      for (let i = 0; i < bundles.length; i++) {
+        const distDir = bundles[i].target?.distDir;
+        if (!distDir) continue;
+        outDir = distDir;
+        break;
+      }
+      // copy the public folder
+      if (outDir) {
+        const sourcePath = resolve('public');
+        const outPath = resolve(outDir);
+        copyDir(sourcePath, outPath);
+      }
     }
   },
 });
-
-const copyFile = (copyFrom: string, copyTo: string) => {
-  copyFileSync(copyFrom, join(copyTo, basename(copyFrom)));
-};
 
 const copyDir = (copyFrom: string, copyTo: string) => {
   if (!existsSync(copyTo)) {
