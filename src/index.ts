@@ -6,19 +6,11 @@ export default new Reporter({
   async report({event}) {
     if (event.type === 'buildSuccess') {
       const sourceDir = resolve('public');
-      const targets = Array.from(
-        new Set(
-          event.bundleGraph
-            .getBundles()
-            .filter(bundle => bundle.target && bundle.target.distDir)
-            .map(bundle => bundle.target.distDir)
-        )
+      const outDir = resolve('www'); // TODO: use the configs
+      (statSync(sourceDir).isDirectory() ? copyDir : copyFile)(
+        sourceDir,
+        outDir
       );
-      for (let i = 0; i < targets.length; i++) {
-        const outDir = resolve(targets[i]);
-        const fn = statSync(sourceDir).isDirectory() ? copyDir : copyFile;
-        fn(sourceDir, outDir);
-      }
     }
   },
 });
