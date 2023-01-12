@@ -1,6 +1,6 @@
 {
   "name": "@tinijs/parcel-reporter-copy-public",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "A ParcelJS reporter for copying the public folder.",
   "author": "Lam Nhan",
   "homepage": "https://lamnhan.com",
@@ -24,8 +24,6 @@
     "compile": "tsc",
     "build": "npm run compile",
     "deploy": "npm run build && npm publish",
-    "test": "npm run compile && nyc --cache false mocha test/**/*.js",
-    "coverage": "nyc --cache false report --reporter=text-lcov | coveralls",
     "lint": "gts lint",
     "fix": "gts fix"
   },
