@@ -1,4 +1,4 @@
-# Copy public
+# TiniJS Copy Public
 
 A ParcelJS reporter for copying the public folder.
 
@@ -16,6 +16,14 @@ Use in the `.parcelrc`
 ```
 
 For more, please visit: <https://tinijs.dev>
+
+## Development
+
+- Create a home for TiniJS: `mkdir TiniJS && cd TiniJS`
+- Fork the repo: `git clone https://github.com/tinijs/parcel-reporter-copy-public.git`
+- Install dependencies: `cd parcel-reporter-copy-public && npm i`
+- Make changes & build locally: `npm run build && npm pack`
+- Push changes & create a PR 👌
 
 ## License
 
