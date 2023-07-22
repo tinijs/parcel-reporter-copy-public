@@ -16,7 +16,7 @@ export default new Reporter({
       }
       // copy the public folder
       if (outDir) {
-        const sourcePath = resolve('public');
+        const sourcePath = resolve('app', 'public');
         const outPath = resolve(outDir);
         copyDir(sourcePath, outPath);
       }

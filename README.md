@@ -1,5 +1,7 @@
 # TiniJS Copy Public
 
+:x: DEPRICATED, will move functions to the CLI.
+
 A ParcelJS reporter for copying the public folder.
 
 ## Install & usage
